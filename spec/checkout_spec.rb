@@ -18,19 +18,7 @@ describe 'Checkout' do
       expect(co.total).to eq '£0.00'
     end
 
-    it 'returns the combined price when two items have been scanned' do
-      item = Item.new('003', 'Funky light', 1995)
-      order_item = OrderItem.new('003', 'Funky Light', 1995, 1995)
-      allow(discounter_instance).to receive(:discounted_basket).and_return([order_item, order_item])
-
-      co = Checkout.new(discounter: discounter)
-      co.scan(item)
-      co.scan(item)
-
-      expect(co.total).to eq '£39.90'
-    end
-
-    it 'returns formatted total of discounted_prices from basket returned by Discounter' do
+    it 'returns formatted total of discounted_prices from basket returned by discounter' do
       discounted_item1 = OrderItem.new('001', 'Very Cheap Chair', 925, 832)
       discounted_item2 = OrderItem.new('002', 'Little table', 4500, 4050)
       discounted_item3 = OrderItem.new('003', 'Funky light', 1995, 1796)

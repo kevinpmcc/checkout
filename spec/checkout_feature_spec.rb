@@ -1,7 +1,7 @@
 require_relative '../lib/checkout'
 require_relative '../lib/item'
 
-describe 'Checkout' do
+describe 'Checkout Feature' do
   context 'when there are no promotional rules' do
     it 'returns £0.00 when no items are scanned' do
       co = Checkout.new
