@@ -7,7 +7,7 @@ describe PercentageOffPromotion do
 
     percentage_off_promo = PercentageOffPromotion.new(promotional_rule, 7000)
 
-    expect(percentage_off_promo.apply).to eq 6300
+    expect(percentage_off_promo.discount_basket).to eq 6300
   end
 
   it 'deducts 10% when it meets exactly the eligibility of the rule' do
@@ -15,7 +15,7 @@ describe PercentageOffPromotion do
 
     percentage_off_promo = PercentageOffPromotion.new(promotional_rule, 6000)
 
-    expect(percentage_off_promo.apply).to eq 5400
+    expect(percentage_off_promo.discount_basket).to eq 5400
   end
 
   it 'returns the original amount when it meets exactly the eligibility of the rule' do
@@ -23,6 +23,6 @@ describe PercentageOffPromotion do
     original_amount = 5252
     percentage_off_promo = PercentageOffPromotion.new(promotional_rule, original_amount)
 
-    expect(percentage_off_promo.apply).to eq original_amount
+    expect(percentage_off_promo.discount_basket).to eq original_amount
   end
 end

@@ -4,7 +4,7 @@ class MultiItemPromotion
     @basket = basket
   end
 
-  def apply
+  def discount_basket
     eligible? ? reduced_basket : @basket
   end
   

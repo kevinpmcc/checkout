@@ -16,7 +16,7 @@ class Checkout
   end
 
   def total
-    @basket = Discounter.new(promotional_rules: @promotional_rules, basket: @basket).apply
+    @basket = Discounter.new(promotional_rules: @promotional_rules, basket: @basket).discount_basket
     number_to_currency(calculate_total)
   end
 

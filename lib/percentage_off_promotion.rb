@@ -4,8 +4,8 @@ class PercentageOffPromotion
     @basket = basket
   end
   
-  def apply
-    eligible? ? apply_discount : @basket
+  def discount_basket
+    eligible? ? discount_basket_discount : @basket
   end
   
   private
@@ -14,7 +14,7 @@ class PercentageOffPromotion
     calculate_total >= @promo_rule[:eligible_min_amount]	
   end
 
-  def apply_discount
+  def discount_basket_discount
     @basket.map {|item|
       item[:reduced_price] -= discount_to_be_applied(item[:reduced_price])
       item

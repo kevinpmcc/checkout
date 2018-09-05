@@ -19,7 +19,7 @@ describe Discounter do
       multi_item_promotion_klass: multi_item_promotion
     )
 
-    expect(discounter.apply).to eq 6350
+    expect(discounter.discount_basket).to eq 6350
   end
 
   it 'with two promo_rules, it calls the second priority with result of first priority' do
@@ -54,12 +54,12 @@ describe Discounter do
     pop_response = 10
 
     allow(multi_item_promotion).to receive(:new).and_return(multi_item_promotion_instance)
-    allow(multi_item_promotion_instance).to receive(:apply).and_return(mip_response)
+    allow(multi_item_promotion_instance).to receive(:discount_basket).and_return(mip_response)
     allow(percentage_off_promotion).to receive(:new).and_return(percentage_off_promotion_instance)
-    allow(percentage_off_promotion_instance).to receive(:apply).and_return(pop_response)
+    allow(percentage_off_promotion_instance).to receive(:discount_basket).and_return(pop_response)
 
     expect(percentage_off_promotion).to receive(:new).with(percentage_off_rule, mip_response)
 
-    discounter.apply
+    discounter.discount_basket
   end
 end

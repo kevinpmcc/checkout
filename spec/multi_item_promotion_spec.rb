@@ -14,7 +14,7 @@ describe MultiItemPromotion do
 
     multi_item_promo = MultiItemPromotion.new(promotional_rule, basket)
 
-    expect(multi_item_promo.apply).to eq 1700
+    expect(multi_item_promo.discount_basket).to eq 1700
   end
 
   it 'returns the discounted amount when it has more than x associated items and other items' do
@@ -30,7 +30,7 @@ describe MultiItemPromotion do
 
     multi_item_promo = MultiItemPromotion.new(promotional_rule, basket)
 
-    expect(multi_item_promo.apply).to eq 6200
+    expect(multi_item_promo.discount_basket).to eq 6200
   end
 
   it 'returns the standard amount when it is not eligible' do
@@ -46,6 +46,6 @@ describe MultiItemPromotion do
 
     multi_item_promo = MultiItemPromotion.new(promotional_rule, basket)
 
-    expect(multi_item_promo.apply).to eq 5425
+    expect(multi_item_promo.discount_basket).to eq 5425
   end
 end

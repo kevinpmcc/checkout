@@ -16,9 +16,9 @@ class Discounter
     }
   end
 
-  def apply
+  def discount_basket
     prioritised_promo_rules.map { |promo_rule| 
-      @basket = @PROMO_TYPES[promo_rule[:type].to_sym].new(promo_rule, @basket).apply
+      @basket = @PROMO_TYPES[promo_rule[:type].to_sym].new(promo_rule, @basket).discount_basket
     }
     @basket
   end
