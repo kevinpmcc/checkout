@@ -12,12 +12,12 @@ class Checkout
   end
 
   def scan(item)
-    @basket << item
+		@basket << OrderItem.new(item[:code], item[:name], item[:price], item[:price])
   end
 
   def total
-    gross_total = Discounter.new(promotional_rules: @promotional_rules, basket: @basket).apply
-    number_to_currency(gross_total)
+    @basket = Discounter.new(promotional_rules: @promotional_rules, basket: @basket).apply
+    number_to_currency(calculate_total)
   end
 
   private
@@ -25,4 +25,10 @@ class Checkout
   def number_to_currency(price)
     format('£%.2f', (price / 100.00).round(2))
   end
+
+  def calculate_total
+		@basket.inject(0){|sum, item| sum + item[:reduced_price]}
+	end
 end
+
+OrderItem = Struct.new(:code, :name, :price, :reduced_price)
